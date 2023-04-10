@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Controller : MonoBehaviour
 {
 
@@ -21,5 +22,9 @@ public abstract class Controller : MonoBehaviour
     }
 
     // Our classes must override the way they process inputs
-    public abstract void ProcessInputs();
+    public virtual void ProcessInputs()
+    {
+
+    }
+
 }
