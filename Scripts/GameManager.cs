@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
             //Otherwise their is already in instance, so destroy this gameObject.
             Destroy(gameObject);
         }
+        players = new List<PlayerController> ();
     }
     // Start is called before the first frame update
     void Start()

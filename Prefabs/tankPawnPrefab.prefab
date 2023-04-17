@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: -7872781182597882795}
   - component: {fileID: -7370937588395770023}
   - component: {fileID: -2722582037774413653}
-  - component: {fileID: 5757325573360873148}
+  - component: {fileID: 6638053980753538960}
+  - component: {fileID: 9019340269754573833}
+  - component: {fileID: 6425433432759338203}
   m_Layer: 0
   m_Name: tankPawnPrefab
   m_TagString: Untagged
@@ -52,8 +54,17 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 360
   mover: {fileID: 0}
+  fireRate: 0
+  currentHealth: 0
+  maxHealth: 0
+  shooter: {fileID: 0}
+  Bullet: {fileID: 0}
+  fireForce: 0
+  damageDone: 0
+  shellLifeSpan: 0
   tankMover: {fileID: 0}
   rb: {fileID: 0}
+  shotsPerSecond: 1
 --- !u!33 &-1306539159481280674
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -152,7 +163,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5757325573360873148
+--- !u!114 &6638053980753538960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,3 +175,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a5a2a819fe5e8479c7d562f369fc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9019340269754573833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359474067923716028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa417b2d9bfc51442a183b446cffaaa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &6425433432759338203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359474067923716028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb63ea4c0300a34d91dc65c3f6948a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firepointTransform: {fileID: 8148010664784580674, guid: 56c01fc9252f32f4eb03892e236b39ee, type: 3}

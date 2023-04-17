@@ -40,6 +40,12 @@ public class AIController : Controller
 
     protected virtual void DoIdleState()
     {
+     //Do nothing
+    }
+
+    public void MakeDecisions()
+    {
+        Debug.Log("Making Decisions");
         switch (currentState)
         {
             case AIState.Idle:
@@ -59,13 +65,21 @@ public class AIController : Controller
                 {
                     ChangeState(AIState.Idle);
                 }
+                else if (IsDistanceLessThan(target, 10))
+                { 
+                    ChangeState(AIState.Attack);
+                }
+                break;
+            case AIState.Attack:
+                //Do work
+                DoAttackState();
+                //Check for transitions
+                if(IsDistanceLessThan(target, 10))
+                {
+                    ChangeState(AIState.Idle);
+                }
                 break;
         }
-    }
-
-    public void MakeDecisions()
-    {
-        Debug.Log("Making Decisions");
     }
 
     public virtual void ChangeState(AIState newState)
@@ -78,6 +92,8 @@ public class AIController : Controller
 
     protected bool IsDistanceLessThan(GameObject target, float distance)
     {
+        Debug.Log("Pawn" + pawn.name);
+        Debug.Log(message: "Target" + target.name);
         if (Vector3.Distance(pawn.transform.position, target.transform.position) < distance)
         {
             return true;

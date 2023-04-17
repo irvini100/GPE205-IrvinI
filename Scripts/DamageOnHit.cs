@@ -23,7 +23,7 @@ public class DamageOnHit : MonoBehaviour
         //Get the health component from the Game object that has the Collider that we are overlapping.
         Health otherHealth = other.gameObject.GetComponent<Health>();
         //Only damage if it has a Health component.
-        if (otherHealth != null)
+        if (otherHealth != null && otherHealth.GetComponent<Pawn>() != owner)
         {
             //Do damage
             otherHealth.TakeDamage(damageDone, owner);
