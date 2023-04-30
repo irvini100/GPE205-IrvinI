@@ -10,7 +10,8 @@ public class TankPawn : Pawn
     Vector3 moveVector;
     private float secondsForShot;
     public float shotsPerSecond = 1.0f;
-   
+    private object pawn;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -48,6 +49,17 @@ public class TankPawn : Pawn
     {
         shooter.Shoot(Bullet, fireForce, damageDone, shellLifeSpan);
     }
+
+    /*public override void OpenDoor()
+    {
+        mapGenerator.GenerateMap();
+    }*/
+
+   /* public override void Controller(Controller controller)
+    {
+        controller.pawn = this;
+    }*/
+   
 
     public override void RotateTowards(Vector3 targetPosition)
     {

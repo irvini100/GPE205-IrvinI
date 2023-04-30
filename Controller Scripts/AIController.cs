@@ -21,6 +21,9 @@ public class AIController : Controller
         base.Start();
 
         ChangeState(AIState.Idle);
+        TargetNearestTank();
+        /*TargetPlayerOne();*/
+       
     }
 
     // Update is called once per frame
@@ -205,6 +208,8 @@ public class AIController : Controller
                 }
             }
         }
+        
+        
     }
 
     protected bool IsHasTarget()
@@ -233,9 +238,10 @@ public class AIController : Controller
                 closestTankDistance = Vector3.Distance(pawn.transform.position, closestTank.transform.position);
             }
         }
-
+        TargetPlayerOne();
         //Target the closest tank
         target = closestTank.gameObject;
+        
     }
 
     public bool CanHear(GameObject target)

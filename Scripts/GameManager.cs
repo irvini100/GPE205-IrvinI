@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject tankPawnPrefab;
     public static GameManager instance;
     public List<PlayerController> players;
+    //Game States
+   /* public GameObject TitleScreenStateObject;
+    public GameObject MainMenuStateObject;
+    public GameObject OptionsScreenStateObject;
+    public GameObject CreditsScreenStateObject;
+    public GameObject GameplayStateObject;
+    public GameObject GameOverScreenStateObject;
+    */
 
     //Awake is called when the object is first created - before even Start can run!
     private void Awake()
@@ -34,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         //Temp Code - for now, we spawn player as soon as the GameManager starts
         SpawnPlayer();
+
+       /* ActivateGameplayScreen();*/
     }
 
     // Update is called once per frame
@@ -56,5 +67,77 @@ public class GameManager : MonoBehaviour
 
         //Hook them up!
         newController.pawn = newPawn;
+       /*newPawn.controller = newController;*/
     }
+    
+    /*private void DeactivateAllStates()
+    {
+        //Deactivate all game states
+        TitleScreenStateObject.SetActive(false);
+        MainMenuStateObject.SetActive(false);
+        OptionsScreenStateObject.SetActive(false);
+        CreditsScreenStateObject.SetActive(false);
+        GameplayStateObject.SetActive(false);
+        GameOverScreenStateObject.SetActive(false);
+    }
+
+    private void ActivateTitleScreen()
+    {
+        //Deactivate all states
+        DeactivateAllStates();
+        //Activate the title screen
+        TitleScreenStateObject.SetActive(true);
+        //Do whatever needs to be done when the title screen starts.
+        //For this game, their is nothing to do, but it may be different for your game.
+
+    }
+    
+    private void ActivateMainMenu()
+    {
+        //Deactivate all states
+        DeactivateAllStates ();
+        MainMenuStateObject.SetActive(true);
+    }
+
+    private void ActivateOptionsScreen()
+    {
+        //Deactivate all states
+        DeactivateAllStates();
+        OptionsScreenStateObject.SetActive(true);
+    }
+
+    private void ActivateCreditsScreen()
+    {
+        DeactivateAllStates();
+        CreditsScreenStateObject.SetActive(true);
+    }
+
+    private void ActivateGameplayScreen()
+    {
+        DeactivateAllStates();
+        GameplayStateObject.SetActive(true);
+    }
+
+    private void ActivateGameoverScreen()
+    {
+        DeactivateAllStates();
+        GameOverScreenStateObject.SetActive(true) ;
+    }
+
+    public void TitleScreenButton()
+    {
+        if (GameManager.instance != null)
+
+        {
+            GameManager.instance.ActivateMainMenu();
+        }
+    }
+
+    public void ReturnToMainMenuButton2()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateMainMenu();
+        }
+    }*/
 }

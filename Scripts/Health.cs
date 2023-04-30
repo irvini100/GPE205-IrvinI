@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public float currentHealth;
     public float maxHealth = 100;
+   /* public Image image;*/
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +28,13 @@ public class Health : MonoBehaviour
         {
             Die(source);
         }
+            /*image.fillAmount = amount;*/
     }
 
     public void Heal (float amount, Pawn source)
     {
         currentHealth = currentHealth + amount;
+        /*image.fillAmount = amount;*/
     }
 
     public void Die (Pawn source)

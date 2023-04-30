@@ -11,6 +11,8 @@ public class PlayerController : Controller
     public KeyCode rotateClockwiseKey;
     public KeyCode rotateCounterClockwiseKey;
     public KeyCode shootKey;
+    public KeyCode openDoorKey;
+    public int score, highScore;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerController : Controller
 
         //Run the Update function from the parent (base) class.
         base.Update();
+
     }
 
     public void OnDestroy()
@@ -77,6 +80,24 @@ public class PlayerController : Controller
         if (Input.GetKeyDown(shootKey))
         {
             pawn.Shoot();
+        }
+        /*if (Input.GetKey(openDoorKey))
+        {
+            pawn.OpenDoor();
+        }*/
+    }
+
+    public void AddScore()
+    {
+        score++;
+        UpdateHighScore();
+    }
+
+    public void UpdateHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
         }
     }
 }

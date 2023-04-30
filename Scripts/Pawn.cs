@@ -25,6 +25,8 @@ public abstract class Pawn : MonoBehaviour
     public float damageDone;
     //Variable for how long our bullets survive if they don't collide
     public float shellLifeSpan;
+    /*public MapGenerator mapGenerator;*/
+   /* public Controller controller;*/
  
 
 
@@ -33,6 +35,9 @@ public abstract class Pawn : MonoBehaviour
     {
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
+        /*mapGenerator = GetComponent<MapGenerator>();*/
+        /*controller = GetComponent<Controller>();*/
+        
     }
 
     // Update is called once per frame
@@ -46,5 +51,7 @@ public abstract class Pawn : MonoBehaviour
     public abstract void RotateClockwise();
     public abstract void RotateCounterClockwise();
     public abstract void Shoot();
+    /*public abstract void OpenDoor();*/
     public abstract void RotateTowards(Vector3 targetPosition);
+    /*public abstract void Controller(Controller controller);*/
 }
