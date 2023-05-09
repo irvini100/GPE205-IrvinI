@@ -21,8 +21,7 @@ public class AIController : Controller
         base.Start();
 
         ChangeState(AIState.Idle);
-        TargetNearestTank();
-        /*TargetPlayerOne();*/
+      
        
     }
 
@@ -34,6 +33,8 @@ public class AIController : Controller
 
         //Make decisions
         MakeDecisions();
+        TargetNearestTank();
+       /* TargetPlayerOne();*/
     }
 
     protected virtual void DoChaseState()
@@ -68,7 +69,7 @@ public class AIController : Controller
                 {
                     ChangeState(AIState.Idle);
                 }
-                else if (IsDistanceLessThan(target, 10))
+                else if (IsDistanceLessThan(target, 15))
                 { 
                     ChangeState(AIState.Attack);
                 }
@@ -77,9 +78,26 @@ public class AIController : Controller
                 //Do work
                 DoAttackState();
                 //Check for transitions
-                if(IsDistanceLessThan(target, 10))
+                if(!IsDistanceLessThan(target, 10))
                 {
                     ChangeState(AIState.Idle);
+                }
+                else if (IsDistanceLessThan(target, 20))
+                {
+                    ChangeState(AIState.Attack);
+                }
+                break;
+            case AIState.Flee:
+                //Do Work
+                Flee();
+                //Check for transitions
+                if(!IsDistanceLessThan(target, 10))
+                {
+                    ChangeState(AIState.Idle);
+                }
+                else if (IsDistanceLessThan(target, 25))
+                {
+                    ChangeState(AIState.Flee);
                 }
                 break;
         }
@@ -148,6 +166,7 @@ public class AIController : Controller
         //Shoot
         Shoot();
     }
+
 
     protected void Flee()
     {
@@ -238,7 +257,6 @@ public class AIController : Controller
                 closestTankDistance = Vector3.Distance(pawn.transform.position, closestTank.transform.position);
             }
         }
-        TargetPlayerOne();
         //Target the closest tank
         target = closestTank.gameObject;
         
