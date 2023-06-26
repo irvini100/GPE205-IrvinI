@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class AIController : Controller
@@ -14,6 +15,10 @@ public class AIController : Controller
     public float fleeDistance;
     public float hearingDistance;
     public float fieldOfView;
+    public float chaseDistance;
+    public float attackDistance;
+    public float fleeHealth;
+    private float currentHealth;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -21,6 +26,7 @@ public class AIController : Controller
         base.Start();
 
         ChangeState(AIState.Idle);
+        Health currentHealth = GetComponent<Health>();
       
        
     }
@@ -34,7 +40,8 @@ public class AIController : Controller
         //Make decisions
         MakeDecisions();
         TargetNearestTank();
-       /* TargetPlayerOne();*/
+        /*TargetPlayerOne();*/
+        Patrol();
     }
 
     protected virtual void DoChaseState()
@@ -56,48 +63,48 @@ public class AIController : Controller
                 //Do work
                 DoIdleState();
                 //Check for transitions
-                if (IsDistanceLessThan(target, 10))
+                if (!IsDistanceLessThan(target, chaseDistance))
                 {
                     ChangeState(AIState.Chase);
+                }
+                else if (currentHealth < fleeHealth)
+                    {
+                    ChangeState(AIState.Flee);
                 }
                 break;
             case AIState.Chase:
                 //Do work
                 DoChaseState();
                 //Check for transitions
-                if (!IsDistanceLessThan(target, 10))
+                if (!IsDistanceLessThan(target, attackDistance))
                 {
-                    ChangeState(AIState.Idle);
-                }
-                else if (IsDistanceLessThan(target, 15))
-                { 
                     ChangeState(AIState.Attack);
+                }
+                else if (!IsDistanceLessThan(target, chaseDistance))
+                { 
+                    ChangeState(AIState.Idle);
                 }
                 break;
             case AIState.Attack:
                 //Do work
                 DoAttackState();
                 //Check for transitions
-                if(!IsDistanceLessThan(target, 10))
+                if(!IsDistanceLessThan(target, attackDistance))
                 {
-                    ChangeState(AIState.Idle);
+                    ChangeState(AIState.Chase);
                 }
-                else if (IsDistanceLessThan(target, 20))
+                else if (currentHealth < fleeHealth)
                 {
-                    ChangeState(AIState.Attack);
+                    ChangeState(AIState.Flee);
                 }
                 break;
             case AIState.Flee:
                 //Do Work
                 Flee();
                 //Check for transitions
-                if(!IsDistanceLessThan(target, 10))
+                if(!IsDistanceLessThan(target, fleeDistance))
                 {
                     ChangeState(AIState.Idle);
-                }
-                else if (IsDistanceLessThan(target, 25))
-                {
-                    ChangeState(AIState.Flee);
                 }
                 break;
         }
@@ -252,6 +259,7 @@ public class AIController : Controller
             //If this one is closer than the closest
             if (Vector3.Distance(pawn.transform.position, tank.transform.position) <= closestTankDistance)
             {
+
                 //It is the closest
                 closestTank = tank;
                 closestTankDistance = Vector3.Distance(pawn.transform.position, closestTank.transform.position);
@@ -287,6 +295,7 @@ public class AIController : Controller
             return false;
         }
     }
+
 
     public bool CanSee(GameObject target)
     {

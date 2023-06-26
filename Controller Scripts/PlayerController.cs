@@ -81,10 +81,10 @@ public class PlayerController : Controller
         {
             pawn.Shoot();
         }
-        /*if (Input.GetKey(openDoorKey))
+        if (Input.GetKey(openDoorKey))
         {
             pawn.OpenDoor();
-        }*/
+        }
     }
 
     public void AddScore()
