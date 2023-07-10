@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,16 @@ public class GameManager : MonoBehaviour
     public GameObject tankPawnPrefab;
     public static GameManager instance;
     public List<PlayerController> players;
+    public List<TankPawn> tankPawn;
+    /*public List<AIController> aiController;*/
     //Game States
    /* public GameObject TitleScreenStateObject;
     public GameObject MainMenuStateObject;
     public GameObject OptionsScreenStateObject;
     public GameObject CreditsScreenStateObject;
     public GameObject GameplayStateObject;
-    public GameObject GameOverScreenStateObject;
-    */
+    public GameObject GameOverScreenStateObject;*/
+    
 
     //Awake is called when the object is first created - before even Start can run!
     private void Awake()
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         //Temp Code - for now, we spawn player as soon as the GameManager starts
         SpawnPlayer();
+        /*aiController = new List<AIController>();*/
+        tankPawn = new List<TankPawn>();
 
        /* ActivateGameplayScreen();*/
     }
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
 
         //Spawn the pawn and connect it to the controller
         GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTraansform.position, playerSpawnTraansform.rotation) as GameObject;
+       
 
         //Get the player controller component and pawn component
         Controller newController = newPlayerObj.GetComponent<Controller>();
@@ -67,10 +73,10 @@ public class GameManager : MonoBehaviour
 
         //Hook them up!
         newController.pawn = newPawn;
-       /*newPawn.controller = newController;*/
+        newPawn.controller = newController;
     }
     
-    /*private void DeactivateAllStates()
+     /* private void DeactivateAllStates()
     {
         //Deactivate all game states
         TitleScreenStateObject.SetActive(false);
@@ -138,6 +144,30 @@ public class GameManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             GameManager.instance.ActivateMainMenu();
+        }
+
+    }
+    public void ActivateGameplayButton()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateGameplayScreen();
+        }
+    }
+
+    public void ActivateOptionsScreenButton()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateOptionsScreen();
+        }
+    }
+
+    public void ActivateCreditsScreenButton()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateCreditsScreen();
         }
     }*/
 }

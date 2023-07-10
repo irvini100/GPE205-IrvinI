@@ -62,6 +62,8 @@ MonoBehaviour:
   fireForce: 0
   damageDone: 0
   shellLifeSpan: 0
+  mapGenerator: {fileID: 0}
+  controller: {fileID: 0}
   tankMover: {fileID: 0}
   rb: {fileID: 0}
   shotsPerSecond: 1

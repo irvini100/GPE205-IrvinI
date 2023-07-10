@@ -27,6 +27,7 @@ public class HealthPickup : MonoBehaviour
         {
             //Add the powerup
             powerupManager.Add(powerup);
+            Debug.Log("Added Health!");
 
             //Destroy this pickup
             Destroy(gameObject);
