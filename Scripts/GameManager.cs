@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Transform playerSpawnTraansform;
+    public Transform playerSpawnTraansform2;
     //Prefabs
     public GameObject playerControllerPrefab;
     public GameObject tankPawnPrefab;
@@ -15,12 +16,12 @@ public class GameManager : MonoBehaviour
     public List<TankPawn> tankPawn;
     /*public List<AIController> aiController;*/
     //Game States
-   /* public GameObject TitleScreenStateObject;
+    public GameObject TitleScreenStateObject;
     public GameObject MainMenuStateObject;
     public GameObject OptionsScreenStateObject;
     public GameObject CreditsScreenStateObject;
     public GameObject GameplayStateObject;
-    public GameObject GameOverScreenStateObject;*/
+    public GameObject GameOverScreenStateObject;
     
 
     //Awake is called when the object is first created - before even Start can run!
@@ -44,12 +45,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Temp Code - for now, we spawn player as soon as the GameManager starts
-        SpawnPlayer();
         /*aiController = new List<AIController>();*/
         tankPawn = new List<TankPawn>();
 
-       /* ActivateGameplayScreen();*/
+       ActivateGameplayScreen(); 
     }
 
     // Update is called once per frame
@@ -76,7 +75,7 @@ public class GameManager : MonoBehaviour
         newPawn.controller = newController;
     }
     
-     /* private void DeactivateAllStates()
+      private void DeactivateAllStates()
     {
         //Deactivate all game states
         TitleScreenStateObject.SetActive(false);
@@ -122,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         DeactivateAllStates();
         GameplayStateObject.SetActive(true);
+        SpawnPlayer();
     }
 
     private void ActivateGameoverScreen()
@@ -169,5 +169,20 @@ public class GameManager : MonoBehaviour
         {
             GameManager.instance.ActivateCreditsScreen();
         }
-    }*/
+    }
+    public void OptionsButton()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateMainMenu();
+        }
+    }
+
+    public void CreditsButton()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ActivateMainMenu();
+        }
+    }
 }

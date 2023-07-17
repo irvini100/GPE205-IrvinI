@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
             if (currentHealth <= 0)
         {
             Die(source);
+            Camera.main.gameObject.GetComponent<MainCameraScript>().GameOver();
         }
             /*image.fillAmount = amount;*/
     }

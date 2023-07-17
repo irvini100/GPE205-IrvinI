@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpeedPickup : MonoBehaviour
 {
     public SpeedPowerup speedPowerup;
+    public AudioClip AudioClip;
+    public GameObject sp;
 
     //Start is called before the first frame update
     void Start()
@@ -29,6 +31,11 @@ public class SpeedPickup : MonoBehaviour
             //Add the powerup
             powerupManager.Add(speedPowerup);
             Debug.Log("Added speed!");
+
+            if (AudioClip != null)
+            {
+                AudioSource.PlayClipAtPoint(AudioClip, sp.transform.position);
+            }
             //Destroy this object
             Destroy(gameObject);
         }

@@ -22,7 +22,8 @@ public class TankPawn : Pawn
     // Update is called once per frame
     public override void Update()
     {
-        base.Start();
+        base.Update();
+        float secondsPerShot = 1 / shotsPerSecond;
     }
 
     public override void MoveForward()
@@ -50,15 +51,15 @@ public class TankPawn : Pawn
         shooter.Shoot(Bullet, fireForce, damageDone, shellLifeSpan);
     }
 
-    /*public override void OpenDoor()
+    public override void OpenDoor()
     {
         mapGenerator.GenerateMap();
-    }*/
+    }
 
-   /* public override void Controller(Controller controller)
+    public override void Controller(Controller controller)
     {
         controller.pawn = this;
-    }*/
+    }
    
 
     public override void RotateTowards(Vector3 targetPosition)
@@ -71,5 +72,15 @@ public class TankPawn : Pawn
 
         //Rotate closer to that vector, but don't rotate more than our turn speed allows in one frame
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    public void IncreaseSpeed(float amount, Pawn source)
+    {
+        moveSpeed = moveSpeed + amount;
+    }
+
+    public void DecreaseSpeed(float amount, Pawn source)
+    {
+        moveSpeed = moveSpeed - amount;
     }
 }

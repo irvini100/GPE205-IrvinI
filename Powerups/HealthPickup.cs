@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public HealthPowerup powerup;
+    public AudioClip GetAudio;
+    public GameObject hpowerup;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,12 @@ public class HealthPickup : MonoBehaviour
             //Add the powerup
             powerupManager.Add(powerup);
             Debug.Log("Added Health!");
+
+            if (GetAudio != null )
+            {
+                AudioSource.PlayClipAtPoint(GetAudio, hpowerup.transform.position);
+            }
+
 
             //Destroy this pickup
             Destroy(gameObject);
